@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Star Coffee — premium handcrafted coffee, cozy ambience, freshly roasted beans with online ordering.">
+    <title>Star Coffee | Premium Coffee House & Bakery</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E%E2%98%95%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- EmailJS SDK Integration -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+
+<body>
+    <!-- ===== Toast Notification Container ===== -->
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <main>
+        <!-- ===== Sticky Navbar ===== -->
+        <div class="container">
+            <header class="head" id="siteHeader">
+                <div class="logo">
+                    <svg class="logo-mark" width="40" height="40" viewBox="0 0 40 40" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M8 16h20v9a10 10 0 0 1-10 10 10 10 0 0 1-10-10v-9Z" stroke="currentColor"
+                            stroke-width="2" stroke-linejoin="round" />
+                        <path d="M28 18h2.5A3.5 3.5 0 0 1 34 21.5v0A3.5 3.5 0 0 1 30.5 25H28" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                        <path d="M14 6c-1.2 1.4-1.2 2.6 0 4M20 6c-1.2 1.4-1.2 2.6 0 4" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <h1>STAR COFFEE</h1>
+                </div>
+
+                <nav class="link" id="primaryNav">
+                    <a href="#home">HOME</a>
+                    <a href="#about">ABOUT</a>
+                    <a href="#menu">MENU</a>
+                    <a href="#gallery">GALLERY</a>
+                    <a href="#testimonials">TESTIMONIALS</a>
+                    <a href="#contact">CONTACT</a>
+                </nav>
+
+                <div class="header-actions">
+                    <!-- Cart Button with Live Counter Badge -->
+                    <button class="cart-trigger-btn" id="openCartBtn" aria-label="Open Shopping Cart">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-btn-label">Cart</span>
+                        <span class="cart-count-badge" id="cartCountBadge">0</span>
+                    </button>
+                    <a href="#menu" class="btn nav-order-btn">Order Now</a>
+                </div>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                    aria-controls="primaryNav">
+                    <span></span><span></span><span></span>
+                </button>
+            </header>
+
+            <!-- ===== Hero Section ===== -->
+            <section class="hero" id="home">
+                <div class="hero-content reveal">
+                    <p class="eyebrow">Welcome to Star Coffee</p>
+                    <h2 class="hero-title">Crafted With Passion,<br>Served With Love</h2>
+                    <p class="hero-subtitle">Freshly roasted beans, handcrafted brews, and a warm corner of the
+                        city to slow down and savor every sip. Order online for instant pickup or delivery!</p>
+                    <div class="hero-actions">
+                        <a href="#menu" class="btn btn-primary">Explore Menu</a>
+                        <a href="#about" class="btn btn-outline">Our Story</a>
+                    </div>
+                </div>
+                <a href="#menu" class="scroll-cue" aria-label="Scroll to menu"><span></span></a>
+            </section>
+
+            <hr>
+
+            <!-- ===== Menu Section ===== -->
+            <div class="menu reveal" id="menu">
+                <p class="eyebrow center">Our Menu</p>
+                <h2>Featured Handcrafted Beverages</h2>
+                <p class="menu-subheading">Select your favorite coffee, customize options, and order directly online!</p>
+            </div>
+            <hr>
+
+            <div class="Menu_item" id="menuItemsContainer">
+                <!-- Product 1 -->
+                <div class="one reveal" data-id="1" data-name="Espresso" data-price="120" data-category="Hot Coffee" data-img="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=80">
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=80"
+                            alt="Espresso shot in a small white cup" loading="lazy">
+                        <figcaption>
+                            <h3>Espresso</h3>
+                            <p>Strong and bold classic single shot espresso brewed to perfection.</p>
+                            <div class="price-row">
+                                <p class="price"><span class="currency">₹</span>120</p>
+                                <span class="tag">Hot</span>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(1)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                                Add to Cart
+                            </button>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="one reveal" data-id="2" data-name="Cappuccino" data-price="150" data-category="Hot Coffee" data-img="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80">
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80"
+                            alt="Cappuccino with latte art foam" loading="lazy">
+                        <figcaption>
+                            <h4>Cappuccino</h4>
+                            <p>Perfect harmony of dark espresso, steamed milk, and rich microfoam.</p>
+                            <div class="price-row">
+                                <p class="price"><span class="currency">₹</span>150</p>
+                                <span class="tag">Bestseller</span>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(2)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                                Add to Cart
+                            </button>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="one reveal" data-id="3" data-name="Latte" data-price="160" data-category="Hot Coffee" data-img="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80">
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80"
+                            alt="Latte with smooth steamed milk" loading="lazy">
+                        <figcaption>
+                            <h4>Caffè Latte</h4>
+                            <p>Rich, full-bodied espresso blended with silky smooth steamed milk.</p>
+                            <div class="price-row">
+                                <p class="price"><span class="currency">₹</span>160</p>
+                                <span class="tag">Popular</span>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(3)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                                Add to Cart
+                            </button>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="one reveal" data-id="4" data-name="Mocha" data-price="170" data-category="Specialty" data-img="https://images.unsplash.com/photo-1578374173705-969cbe6f2d6b?auto=format&fit=crop&w=500&q=80">
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1578374173705-969cbe6f2d6b?auto=format&fit=crop&w=500&q=80"
+                            alt="Mocha topped with chocolate drizzle" loading="lazy">
+                        <figcaption>
+                            <h4>Caffè Mocha</h4>
+                            <p>Espresso combined with dark chocolate sauce, steamed milk & cocoa powder.</p>
+                            <div class="price-row">
+                                <p class="price"><span class="currency">₹</span>170</p>
+                                <span class="tag">Sweet</span>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(4)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                                Add to Cart
+                            </button>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="one reveal" data-id="5" data-name="Americano" data-price="130" data-category="Hot Coffee" data-img="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=500&q=80">
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=500&q=80"
+                            alt="Americano viewed from above" loading="lazy">
+                        <figcaption>
+                            <h4>Americano</h4>
+                            <p>Espresso shots topped with hot water to produce a light layer of crema.</p>
+                            <div class="price-row">
+                                <p class="price"><span class="currency">₹</span>130</p>
+                                <span class="tag">Classic</span>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(5)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                                Add to Cart
+                            </button>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="one reveal" data-id="6" data-name="Caramel Macchiato" data-price="180" data-category="Specialty" data-img="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=500&q=80">
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=500&q=80"
+                            alt="Caramel macchiato with caramel drizzle" loading="lazy">
+                        <figcaption>
+                            <h4>Caramel Macchiato</h4>
+                            <p>Freshly steamed milk with vanilla-flavored syrup marked with rich espresso.</p>
+                            <div class="price-row">
+                                <p class="price"><span class="currency">₹</span>180</p>
+                                <span class="tag">Chef Special</span>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(6)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                                Add to Cart
+                            </button>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="one reveal" data-id="7" data-name="Cold Brewed Iced Coffee" data-price="190" data-category="Cold Coffee" data-img="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=500&q=80">
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=500&q=80"
+                            alt="Cold brewed iced coffee" loading="lazy">
+                        <figcaption>
+                            <h4>Cold Brewed Iced Coffee</h4>
+                            <p>Slow steeped for 20 hours to deliver an exceptionally smooth, sweet cold coffee.</p>
+                            <div class="price-row">
+                                <p class="price"><span class="currency">₹</span>190</p>
+                                <span class="tag">Chilled</span>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(7)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                                Add to Cart
+                            </button>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="one reveal" data-id="8" data-name="Hazelnut Coffee Frappe" data-price="210" data-category="Cold Coffee" data-img="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80">
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80"
+                            alt="Hazelnut Coffee Frappe with whipped cream" loading="lazy">
+                        <figcaption>
+                            <h4>Hazelnut Coffee Frappe</h4>
+                            <p>Blended ice coffee topped with whipped cream and roasted hazelnut syrup.</p>
+                            <div class="price-row">
+                                <p class="price"><span class="currency">₹</span>210</p>
+                                <span class="tag">Deluxe</span>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart(8)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                                Add to Cart
+                            </button>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- ===== Gallery Section ===== -->
+            <div class="menu reveal" id="gallery">
+                <p class="eyebrow center">Our Gallery</p>
+                <h2>Moments at Star Coffee</h2>
+            </div>
+
+            <hr>
+
+            <div class="gallery reveal">
+                <div class="g1">
+                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=500&q=80"
+                        alt="Coffee cup on a wooden table with beans" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=500&q=80"
+                        alt="Close up of roasted coffee beans" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=500&q=80"
+                        alt="Hands holding a warm coffee cup" loading="lazy">
+                </div>
+                <div class="g2">
+                    <img src="https://images.unsplash.com/photo-1442550528053-c431ecb55509?auto=format&fit=crop&w=500&q=80"
+                        alt="Coffee shop counter and decor" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=500&q=80"
+                        alt="Latte art poured into a cup" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=80"
+                        alt="Cozy coffee shop interior seating" loading="lazy">
+                </div>
+            </div>
+
+            <!-- ===== Offer Banner ===== -->
+            <div class="offer reveal">
+                <div>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M20 12v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9M2 7h20v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7Z"
+                            stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                        <path
+                            d="M12 22V7M12 7H7.5A2.5 2.5 0 0 1 5 4.5 2.5 2.5 0 0 1 7.5 2C10 2 12 4.5 12 7ZM12 7h4.5A2.5 2.5 0 0 0 19 4.5 2.5 2.5 0 0 0 16.5 2C14 2 12 4.5 12 7Z"
+                            stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                    </svg>
+                    <div>
+                        <h2>Buy 1 Get 1 Free &amp; Special Discount!</h2>
+                        <p>Use code <strong>STAR10</strong> at checkout for 10% instant discount on your order!</p>
+                    </div>
+                </div>
+                <a href="#menu" class="btn">Claim Offer</a>
+            </div>
+
+            <!-- ===== Location Map ===== -->
+            <section class="map-section reveal">
+                <p class="eyebrow center">Visit Us</p>
+                <h2>Find Us Here</h2>
+                <div class="map-frame">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62227.68308608389!2d80.0089603582031!3d12.892914499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52f527530d4a63%3A0xe308873a6cb411bd!2sSTAR%20RESTAURANT%20%40%20VANDALUR!5e0!3m2!1sen!2sin!4v1785489291219!5m2!1sen!2sin"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </section>
+        </div>
+
+        <!-- ===== About Us Section ===== -->
+        <div class="aboutus reveal" id="about">
+            <div class="ourcoffee">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Interior view of Star Coffee shop">
+            </div>
+            <div class="moments">
+                <p class="eyebrow">About Us</p>
+                <h1 class="two">Our Coffee, Your Moments</h1>
+                <p>At Star Coffee, we believe that great coffee brings people together. Since our beginning, we've
+                    been dedicated to serving high-quality coffee made from the finest beans, crafted with love and
+                    passion.</p>
+                <a href="#menu" class="btn">Explore Menu</a>
+            </div>
+
+            <div class="experience">
+                <div>
+                    <figure>
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+                                <path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <figcaption>
+                            <h3>10+</h3>
+                            <p>Years Experience</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div>
+                    <figure>
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M6 9h11v5a5.5 5.5 0 0 1-5.5 5.5v0A5.5 5.5 0 0 1 6 14V9Z" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linejoin="round" />
+                                <path d="M17 10.5h1.5a2 2 0 0 1 0 4H17" stroke="currentColor" stroke-width="1.6" />
+                                <path d="M9 3.5c-.8.9-.8 1.7 0 2.6M13 3.5c-.8.9-.8 1.7 0 2.6" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <figcaption>
+                            <h3>50+</h3>
+                            <p>Coffee Types</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div>
+                    <figure>
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6" />
+                                <path d="M3.5 19a5.5 5.5 0 0 1 11 0" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" />
+                                <circle cx="17" cy="9" r="2.3" stroke="currentColor" stroke-width="1.6" />
+                                <path d="M15.7 13.2A4.2 4.2 0 0 1 20.5 17.4" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <figcaption>
+                            <h3>5000+</h3>
+                            <p>Happy Customers</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div>
+                    <figure>
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="3.5" y="4.5" width="17" height="16" rx="2.5" stroke="currentColor"
+                                    stroke-width="1.6" />
+                                <path d="M3.5 9.5h17M8 3v3M16 3v3" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <figcaption>
+                            <h3>Open 7</h3>
+                            <p>Days a Week</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Why Choose Us ===== -->
+        <section class="why-section reveal" id="why-us">
+            <p class="middle">Why Choose Us</p>
+            <h1 class="middle">Because You Deserve The Best</h1>
+            <div class="membership">
+                <div>
+                    <figure>
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 3 4 7v6c0 4.5 3.4 7.5 8 8 4.6-.5 8-3.5 8-8V7l-8-4Z" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linejoin="round" />
+                                <path d="m9 12 2 2 4-4.5" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <figcaption>
+                            <h5>Premium Beans</h5>
+                            <p>We use only 100% premium Arabica beans for the richest flavor.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div>
+                    <figure>
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <figcaption>
+                            <h5>Fast Express Service</h5>
+                            <p>Instant prep and quick delivery to make your day delightful.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div>
+                    <figure>
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M2 9.5a14 14 0 0 1 20 0M5.2 13a9.5 9.5 0 0 1 13.6 0M8.6 16.4a5 5 0 0 1 6.8 0"
+                                    stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                                <circle cx="12" cy="19.5" r="1.2" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <figcaption>
+                            <h5>Free High-Speed Wi-Fi</h5>
+                            <p>Stay connected while you enjoy your favorite cup of coffee.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div>
+                    <figure>
+                        <span class="icon-badge" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M4 17v-4a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v4" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linecap="round" />
+                                <path d="M3 17.5h18M4.5 17v2.5M19.5 17v2.5M6 10V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"
+                                    stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <figcaption>
+                            <h5>Cozy Atmosphere</h5>
+                            <p>A warm and cozy place perfect for relaxation or work.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Testimonials ===== -->
+        <section class="testimonials-section reveal" id="testimonials">
+            <p class="middle">Testimonials</p>
+            <h1 class="middle">What Our Customers Say</h1>
+            <div class="customer">
+                <div>
+                    <figure>
+                        <img src="https://ui-avatars.com/api/?name=Ananya+R&background=6F4E37&color=fff&rounded=true&size=128"
+                            alt="Ananya R" loading="lazy">
+                        <figcaption>
+                            <p class="stars">★★★★★</p>
+                            <h5>Ananya R</h5>
+                            <p>Amazing coffee and cozy ambience. Ordering online via cart was super smooth!</p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div>
+                    <figure>
+                        <img src="https://ui-avatars.com/api/?name=Rahul+Sharma&background=4E342E&color=fff&rounded=true&size=128"
+                            alt="Rahul Sharma" loading="lazy">
+                        <figcaption>
+                            <p class="stars">★★★★★</p>
+                            <h5>Rahul Sharma</h5>
+                            <p>The best cappuccino I've ever had! Email confirmation arrived instantly.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div>
+                    <figure>
+                        <img src="https://ui-avatars.com/api/?name=Priya+Mehta&background=D4A373&color=4E342E&rounded=true&size=128"
+                            alt="Priya Mehta" loading="lazy">
+                        <figcaption>
+                            <p class="stars">★★★★★</p>
+                            <h5>Priya Mehta</h5>
+                            <p>Love the atmosphere and the variety of coffee. Ordering online is seamless!</p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div>
+                    <figure>
+                        <img src="https://ui-avatars.com/api/?name=Surya&background=6F4E37&color=fff&rounded=true&size=128"
+                            alt="Surya" loading="lazy">
+                        <figcaption>
+                            <p class="stars">★★★★★</p>
+                            <h5>Surya</h5>
+                            <p>A warm and cozy place with top-notch coffee and quick table checkout.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Contact & Feedback Form with Direct Email Integration ===== -->
+        <section class="contact-section reveal" id="contact">
+            <div class="section-head">
+                <p class="eyebrow center">Customer Feedback &amp; Support</p>
+                <h1>We'd Love Your Feedback!</h1>
+                <p class="section-desc">Every piece of feedback is sent directly to <strong>harishmurugan60@gmail.com</strong>.</p>
+            </div>
+
+            <div class="tablebox">
+                <form id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="cname">Your Name *</label>
+                        <input id="cname" name="cname" type="text" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cemail">Your Email Address *</label>
+                        <input id="cemail" name="cemail" type="email" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cphone">Phone Number</label>
+                        <input id="cphone" name="cphone" type="tel" placeholder="+91 98765 43210">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedbackType">Feedback Category</label>
+                        <select id="feedbackType" name="feedbackType" class="form-select">
+                            <option value="Coffee & Beverage Quality">☕ Coffee &amp; Beverage Quality</option>
+                            <option value="Service & Staff Experience">⭐ Service &amp; Staff Experience</option>
+                            <option value="Website & Online Ordering">🛒 Website &amp; Online Ordering</option>
+                            <option value="General Inquiry / Suggestion">💡 General Inquiry / Suggestion</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="starRating">Rate Your Experience</label>
+                        <select id="starRating" name="starRating" class="form-select">
+                            <option value="5 Stars - Excellent">⭐⭐⭐⭐⭐ Excellent (5 Stars)</option>
+                            <option value="4 Stars - Very Good">⭐⭐⭐⭐ Very Good (4 Stars)</option>
+                            <option value="3 Stars - Average">⭐⭐⭐ Average (3 Stars)</option>
+                            <option value="2 Stars - Needs Improvement">⭐⭐ Needs Improvement (2 Stars)</option>
+                            <option value="1 Star - Poor">⭐ Poor (1 Star)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cmessage">Your Feedback / Message *</label>
+                        <textarea id="cmessage" name="cmessage" rows="4" placeholder="Share your experience or suggestions..." required></textarea>
+                    </div>
+
+                    <div class="form-action-row">
+                        <button type="submit" id="contactSubmitBtn" class="btn btn-primary">
+                            <span>Submit Feedback to harishmurugan60@gmail.com</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </button>
+                    </div>
+                    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+
+            <div class="details">
+                <div>
+                    <span class="icon-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z" stroke="currentColor"
+                                stroke-width="1.6" stroke-linejoin="round" />
+                            <circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6" />
+                        </svg>
+                    </span>
+                    <p>Address: 123, Coffee St, Chennai, Tamil Nadu</p>
+                </div>
+                <div>
+                    <span class="icon-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2C10.5 18.5 5.5 13.5 4.5 6.5a2 2 0 0 1 2-3Z"
+                                stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <p>Phone: +91 98265 43210</p>
+                </div>
+                <div>
+                    <span class="icon-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                            <path d="m4 6.5 8 6.5 8-6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <p>Email: hello@starcoffee.com</p>
+                </div>
+                <div>
+                    <span class="icon-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+                            <path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <p>Working Hours<br>Mon–Sun: 8:00 AM – 10:00 PM</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+        <!-- ===== Footer ===== -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-box">
+                    <h2>☕ Star Coffee</h2>
+                    <p>
+                        Great coffee, good food, and good vibes.
+                        Visit us or order online and make every moment special.
+                    </p>
+                </div>
+
+                <div class="footer-box">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates and offers in your inbox.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Enter your email" required aria-label="Email address">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <hr>
+            <p class="copyright">
+                © 2026 STAR COFFEE. All Rights Reserved. Designed for Seamless Frontend Shopping &amp; Email Integration.
+            </p>
+        </footer>
+    </main>
+
+    <!-- ==========================================================================
+         CART DRAWER MODAL
+         ========================================================================== -->
+    <div id="cartOverlay" class="modal-overlay" onclick="closeCartModal()"></div>
+    <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-labelledby="cartTitle" aria-hidden="true">
+        <div class="cart-header">
+            <div class="cart-title-row">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <h3 id="cartTitle">Your Coffee Basket</h3>
+            </div>
+            <button class="close-btn" onclick="closeCartModal()" aria-label="Close Cart">&times;</button>
+        </div>
+
+        <div class="cart-body" id="cartBody">
+            <!-- Dynamic Cart Items populated by JS -->
+        </div>
+
+        <div class="cart-footer" id="cartFooter">
+            <!-- Coupon Code Section -->
+            <div class="coupon-section">
+                <div class="coupon-input-group">
+                    <input type="text" id="couponInput" placeholder="Enter promo code (e.g. STAR10)" style="text-transform:uppercase;">
+                    <button type="button" class="btn-sm" onclick="applyCoupon()">Apply</button>
+                </div>
+                <p id="couponStatus" class="coupon-status"></p>
+            </div>
+
+            <div class="bill-summary">
+                <div class="bill-row"><span>Subtotal:</span><span id="cartSubtotal">₹0</span></div>
+                <div class="bill-row"><span>GST Tax (5%):</span><span id="cartTax">₹0</span></div>
+                <div class="bill-row"><span>Delivery Charge:</span><span id="cartDelivery">₹0</span></div>
+                <div class="bill-row discount-row" id="discountRow" style="display:none;"><span>Promo Discount (10%):</span><span id="cartDiscount">-₹0</span></div>
+                <div class="bill-row grand-total"><span>Grand Total:</span><span id="cartGrandTotal">₹0</span></div>
+            </div>
+
+            <button class="btn btn-primary checkout-proceed-btn" onclick="openCheckoutModal()">
+                Proceed to Buy &amp; Checkout
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ==========================================================================
+         CHECKOUT & BUYING FACTORS MODAL
+         ========================================================================== -->
+    <div id="checkoutModal" class="modal" role="dialog" aria-labelledby="checkoutModalTitle" aria-hidden="true">
+        <div class="modal-content checkout-modal-content">
+            <div class="modal-header">
+                <h3>🛒 Complete Your Order &amp; Buying Factors</h3>
+                <button class="close-btn" onclick="closeCheckoutModal()" aria-label="Close Checkout">&times;</button>
+            </div>
+
+            <form id="checkoutForm" onsubmit="handleOrderSubmission(event)" novalidate>
+                <div class="checkout-grid">
+                    <!-- Column 1: Customer Details -->
+                    <div class="checkout-section">
+                        <h4>1. Customer Details</h4>
+                        <div class="form-group">
+                            <label for="custName">Full Name *</label>
+                            <input type="text" id="custName" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="custEmail">Email Address (For Order Receipt) *</label>
+                            <input type="email" id="custEmail" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="custPhone">Phone Number *</label>
+                            <input type="tel" id="custPhone" placeholder="+91 98765 43210" required>
+                        </div>
+
+                        <h4 style="margin-top: 20px;">2. Delivery Information</h4>
+                        <div class="form-group">
+                            <label for="custAddress">Delivery Address / Table No *</label>
+                            <textarea id="custAddress" rows="2" placeholder="Street address or Table # inside cafe" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="custNotes">Special Instructions / Preferences</label>
+                            <input type="text" id="custNotes" placeholder="e.g. Less sugar, extra hot, call on arrival">
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Payment Factors -->
+                    <div class="checkout-section">
+                        <h4>3. Select Payment Factor</h4>
+                        <div class="payment-options">
+                            <label class="payment-option-card">
+                                <input type="radio" name="paymentMethod" value="UPI" checked onchange="togglePaymentFields()">
+                                <div class="option-info">
+                                    <span class="option-title">⚡ Instant UPI / QR Code</span>
+                                    <span class="option-sub">GPay, PhonePe, Paytm, BHIM</span>
+                                </div>
+                            </label>
+
+                            <label class="payment-option-card">
+                                <input type="radio" name="paymentMethod" value="Card" onchange="togglePaymentFields()">
+                                <div class="option-info">
+                                    <span class="option-title">💳 Credit / Debit Card</span>
+                                    <span class="option-sub">Visa, Mastercard, RuPay</span>
+                                </div>
+                            </label>
+
+                            <label class="payment-option-card">
+                                <input type="radio" name="paymentMethod" value="COD" onchange="togglePaymentFields()">
+                                <div class="option-info">
+                                    <span class="option-title">💵 Cash on Delivery / Counter</span>
+                                    <span class="option-sub">Pay when your coffee arrives</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Dynamic Payment Sub-Panels -->
+                        <div id="upiPanel" class="payment-panel">
+                            <div class="qr-box">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=upi://pay?pa=starcoffee@upi&pn=Star%20Coffee%20Shop" alt="UPI QR Code Placeholder">
+                                <p>Scan &amp; Pay using any UPI app<br><strong>UPI ID: starcoffee@upi</strong></p>
+                            </div>
+                        </div>
+
+                        <div id="cardPanel" class="payment-panel" style="display:none;">
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" id="cardNumber" placeholder="4532 •••• •••• 8910" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cardExpiry">Expiry (MM/YY)</label>
+                                    <input type="text" id="cardExpiry" placeholder="12/28" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardCVV">CVV</label>
+                                    <input type="password" id="cardCVV" placeholder="•••" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="codPanel" class="payment-panel" style="display:none;">
+                            <div class="cod-info-box">
+                                <p>✔️ Please keep exact cash ready. You can also pay via QR at your table upon delivery.</p>
+                            </div>
+                        </div>
+
+                        <div class="checkout-summary-box">
+                            <div class="summary-line"><span>Total Order Price:</span><strong id="checkoutFinalAmount">₹0</strong></div>
+                            <div class="summary-line email-notice"><span>📧 Receipt:</span><small>Order confirmation email will be sent instantly</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeCheckoutModal()">Back to Cart</button>
+                    <button type="submit" id="submitOrderBtn" class="btn btn-primary">
+                        <span>Place Order &amp; Send Confirmation</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         ORDER CONFIRMATION & RECEIPT MODAL
+         ========================================================================== -->
+    <div id="orderSuccessModal" class="modal" role="dialog" aria-labelledby="orderSuccessTitle" aria-hidden="true">
+        <div class="modal-content receipt-modal-content">
+            <div class="success-header">
+                <div class="success-icon">🎉</div>
+                <h3 id="orderSuccessTitle">Order Placed Successfully!</h3>
+                <p>Thank you for ordering with Star Coffee. Your coffee is being handcrafted!</p>
+            </div>
+
+            <!-- Invoice Container -->
+            <div class="invoice-container" id="printableInvoice">
+                <div class="invoice-header">
+                    <div>
+                        <h2>☕ STAR COFFEE</h2>
+                        <p>123, Coffee St, Chennai, Tamil Nadu</p>
+                        <p>GSTIN: 33AAAAA0000A1Z5</p>
+                    </div>
+                    <div class="invoice-meta">
+                        <p><strong>Order ID:</strong> <span id="invOrderId">#STAR-1001</span></p>
+                        <p><strong>Date:</strong> <span id="invDate">2026-07-31</span></p>
+                        <p><strong>Payment Status:</strong> <span id="invPaymentStatus" class="status-badge">CONFIRMED</span></p>
+                    </div>
+                </div>
+
+                <hr class="inv-hr">
+
+                <div class="invoice-cust-details">
+                    <p><strong>Customer Name:</strong> <span id="invCustName">John Doe</span></p>
+                    <p><strong>Email:</strong> <span id="invCustEmail">john@example.com</span></p>
+                    <p><strong>Phone:</strong> <span id="invCustPhone">+91 98765 43210</span></p>
+                    <p><strong>Delivery Address:</strong> <span id="invCustAddress">Table #4</span></p>
+                    <p><strong>Payment Factor:</strong> <span id="invPaymentMethod">UPI / QR Code</span></p>
+                </div>
+
+                <hr class="inv-hr">
+
+                <table class="invoice-items-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invItemsList">
+                        <!-- Invoice Items dynamically injected -->
+                    </tbody>
+                </table>
+
+                <hr class="inv-hr">
+
+                <div class="invoice-totals">
+                    <p>Subtotal: <span id="invSubtotal">₹0</span></p>
+                    <p>GST Tax (5%): <span id="invTax">₹0</span></p>
+                    <p>Delivery Charge: <span id="invDelivery">₹0</span></p>
+                    <p id="invDiscountRow" style="display:none;">Promo Discount: <span id="invDiscount">-₹0</span></p>
+                    <h4>Grand Total: <span id="invGrandTotal">₹0</span></h4>
+                </div>
+
+                <div class="email-sent-badge">
+                    <span>📩 Order Confirmation Email Sent to <strong id="invEmailTarget">user@example.com</strong></span>
+                </div>
+            </div>
+
+            <div class="receipt-actions">
+                <button type="button" class="btn btn-outline" onclick="window.print()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+                    Print Receipt
+                </button>
+                <button type="button" class="btn btn-primary" onclick="closeOrderSuccessModal()">Done &amp; Return to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JS Application Script ===== -->
+    <script src="script.js"></script>
+</body>
+
+</html>
